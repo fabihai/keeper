@@ -5,6 +5,7 @@ import Note from "./Note";
 import notes from "../notes";
 
 function App() {
+  
   const [info, setInfo] = useState({
     key: "",
     title: "",
@@ -87,7 +88,6 @@ function App() {
         setDataUpdated(!dataUpdated);
       }
     };
-    console.log(JSON.stringify(id));
     deleteData(id);
   }
 
