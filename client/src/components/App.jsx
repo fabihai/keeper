@@ -23,7 +23,6 @@ function App() {
           if (data.title !== "" && data.content !== "") {
             setNote([...note, data]);
             setBackendData(data);
-          console.log(data);
           }
         }
       )
@@ -72,8 +71,8 @@ function App() {
     }
   };
 
-  const deleteNote = (i) => {
-    async function deleteData (i) {
+  const deleteNote = (id) => {
+    async function deleteData (id) {
       const response = await fetch("/api/deleteData", {
         method: "POST",
         headers: {
@@ -81,14 +80,15 @@ function App() {
         },
 
         body: JSON.stringify({
-          keyValue: i,
+          userId: id
         }),
       })
       if (response?.status === 200) {
         setDataUpdated(!dataUpdated);
       }
     };
-    deleteData(i);
+    console.log(JSON.stringify(id));
+    deleteData(id);
   }
 
   return (
@@ -121,7 +121,7 @@ function App() {
             key={i}
             title={notes.title}
             content={notes.content}
-            onDelete={() => deleteNote(i)}
+            onDelete={() => deleteNote(notes._id)}
           />
         ))
       )}

@@ -50,9 +50,9 @@ app.post("/api/postData", async (req, res) => {
 });
 
 app.post("/api/deleteData", async (req, res) => {
-    const {userid} = req.body;
+    const noteToDelete = req?.body;
     try {
-        Note.deleteOne({key:userid}).then(function() {
+        Note.deleteOne({_id:noteToDelete.userId}).then(function() {
             console.log("Note deleted");
         }).catch(function(error) {
             console.log(error);
